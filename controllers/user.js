@@ -43,7 +43,7 @@ exports.signin = (req, res) => {
     res.cookie('t', token, {expire: new Date() + 9999});
     // return response with user and token to frontend client
     const {_id, name, email, role} = user;
-    return res.json({token, user: {_id, email, name, role}})
+    return res.json({token, user: {_id, email, name, role}});
   });
 };
 
@@ -52,7 +52,11 @@ exports.signout = (req, res) => {
   res.json({message: 'Signout success.'});
 }
 
-
+exports.requireSignin = expressJwt({
+  secret: process.env.JWT_SECRET,
+  algorithms: ["HS256"],
+  userProperty: "auth",
+});
 
 
 

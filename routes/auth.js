@@ -1,7 +1,12 @@
 const express = require('express');
 
 // imports signup controller
-const { signup, signin, signout, requireSignin } = require('../controllers/user');
+const { 
+  signup, 
+  signin, 
+  signout, 
+  requireSignin 
+} = require('../controllers/auth');
 
 // imports signup validator
 const { userSignupValidator } = require('../validator');

@@ -1,9 +1,12 @@
 const express = require('express');
 
+// imports signup controller
+const { signup } = require('../controllers/user');
+
 // router
 const router = express.Router();
 
-const { signup } = require('../controllers/user');
+
 
 router.post('/signup', signup);
 

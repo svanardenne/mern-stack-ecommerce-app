@@ -1,6 +1,6 @@
 const express = require('express');
 
-// imports signup controller
+// imports controllers
 const { 
   signup, 
   signin, 

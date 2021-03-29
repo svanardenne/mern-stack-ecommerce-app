@@ -30,7 +30,6 @@ exports.signin = (req, res) => {
       });
     }
     // if user is found make sure the email and password match
-    // create authenticate method in user model
     if (!user.authenticate(password)) {
       return res.status(401).json({
         error: 'Email and password do not match.'
@@ -58,5 +57,22 @@ exports.requireSignin = expressJwt({
   userProperty: "auth",
 });
 
+exports.isAuth = (req, res, next) => {
+  let user = req.profile && req.auth && req.profile._id == req.auth._id;
+  console.log(req.auth);
+  if (!user) {
+    return res.status(403).json({
+      error: 'Access denied'
+    });
+  }
+  next();
+};
 
-
+exports.isAdmin = (req, res, next) => {
+  if (req.profile.role === 0) {
+    return res.status(403).json({
+      error: 'Admin resource!  Access denied'
+    });
+  }
+  next();
+};

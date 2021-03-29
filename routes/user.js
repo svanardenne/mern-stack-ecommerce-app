@@ -1,5 +1,9 @@
 const express = require('express');
 
+// router
+const router = express.Router();
+
+
 // imports signup controller
 const { userById } = require('../controllers/user');
 
@@ -9,9 +13,6 @@ const {
   isAuth,
   isAdmin
 } = require('../controllers/auth');
-
-// router
-const router = express.Router();
 
 router.get('/secret/:userId', requireSignin, isAuth, isAdmin, (req, res) => {
   res.json({

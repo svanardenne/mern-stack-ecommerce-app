@@ -5,7 +5,7 @@ const fs = require('fs');
 const Product = require('../models/product');
 const {errorHandler} = require('../helpers/dbErrorHandler');
 
-// Middleware for finding a product
+// Method for finding a product
 exports.productById = (req, res, next, id) => {
   Product.findById(id).exec((err, product) => {
     if (err || !product) {
@@ -23,7 +23,7 @@ exports.read = (req, res) => {
   return res.json(req.product);
 };
 
-// Middleware for creating and saving a product in the database
+// Method for creating and saving a product in the database
 exports.create = (req, res) => {
   let form = new formidable.IncomingForm();
   form.keepExtensions = true;
@@ -68,10 +68,25 @@ exports.create = (req, res) => {
     product.save((err, result) => {
       if (err) {
         return res.status(400).json({
-          error: errorHandler
+          error: errorHandler(err)
         });
       }
       res.json(result);
     });
   });
-}
+};
+
+// Method for deleting product
+exports.remove = (req, res) => {
+  let product = req.product;
+  product.remove((err, deletedProduct) => {
+    if (err) {
+      return res.status(400).json({
+        error: errorHandler(err)
+      });
+    }
+    res.json({
+      "message": "Product deleted successfully"
+    });
+  });
+};

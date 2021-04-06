@@ -5,7 +5,9 @@ const router = express.Router();
 
 // imports controllers
 const { 
-  create
+  create,
+  productById,
+  read
 } = require('../controllers/product');
 
 // imports from auth controller
@@ -18,6 +20,8 @@ const {
 // imports signup controller
 const { userById } = require('../controllers/user');
 
+router.get('/product/:productId', read)
+
 router.post('/product/create/:userId', 
 requireSignin, 
 isAuth, 
@@ -26,5 +30,6 @@ create
 );
 
 router.param('userId', userById);
+router.param('productId', productById)
 
 module.exports = router;

@@ -18,6 +18,7 @@ exports.productById = (req, res, next, id) => {
   });
 };
 
+// Read method for fetched product data
 exports.read = (req, res) => {
   req.product.photo = undefined;
   return res.json(req.product);

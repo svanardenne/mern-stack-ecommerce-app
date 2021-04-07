@@ -7,7 +7,10 @@ const router = express.Router();
 const { 
   create,
   categoryById,
-  read
+  read,
+  update,
+  remove,
+  list
 } = require('../controllers/category');
 
 // imports from auth controller
@@ -29,6 +32,24 @@ router.post('/category/create/:userId',
   isAuth, 
   isAdmin, 
   create
+);
+
+router.put('/category/:categoryId/:userId', 
+  requireSignin, 
+  isAuth, 
+  isAdmin, 
+  update
+);
+
+router.delete('/category/:categoryId/:userId', 
+  requireSignin, 
+  isAuth, 
+  isAdmin, 
+  remove
+);
+
+router.get('/categories',
+  list
 );
 
 router.param('categoryId', categoryById);

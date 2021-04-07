@@ -8,7 +8,8 @@ const {
   create,
   productById,
   read,
-  remove
+  remove,
+  update
 } = require('../controllers/product');
 
 // imports from auth controller
@@ -33,6 +34,12 @@ router.delete('/product/:productId/:userId',
   isAuth, 
   isAdmin,
   remove
+);
+router.put('/product/:productId/:userId',
+  requireSignin, 
+  isAuth, 
+  isAdmin,
+  update
 );
 
 router.param('userId', userById);

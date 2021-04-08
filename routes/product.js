@@ -9,7 +9,8 @@ const {
   productById,
   read,
   remove,
-  update
+  update,
+  list
 } = require('../controllers/product');
 
 // imports from auth controller
@@ -41,6 +42,8 @@ router.put('/product/:productId/:userId',
   isAdmin,
   update
 );
+
+router.get('/products', list);
 
 router.param('userId', userById);
 router.param('productId', productById)

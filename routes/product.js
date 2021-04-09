@@ -24,6 +24,7 @@ const {
 // imports signup controller
 const { userById } = require('../controllers/user');
 
+// CRUD Routes
 router.get('/product/:productId', read)
 router.post('/product/create/:userId', 
   requireSignin, 
@@ -44,9 +45,11 @@ router.put('/product/:productId/:userId',
   update
 );
 
+// List routes
 router.get('/products', list);
 router.get('/products/related/:productId', listRelated);
 
+// Params and middleware
 router.param('userId', userById);
 router.param('productId', productById)
 

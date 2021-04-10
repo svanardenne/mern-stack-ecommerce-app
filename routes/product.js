@@ -11,7 +11,8 @@ const {
   remove,
   update,
   list,
-  listRelated
+  listRelated,
+  listCategories
 } = require('../controllers/product');
 
 // imports from auth controller
@@ -48,6 +49,7 @@ router.put('/product/:productId/:userId',
 // List routes
 router.get('/products', list);
 router.get('/products/related/:productId', listRelated);
+router.get('/products/categories', listCategories);
 
 // Params and middleware
 router.param('userId', userById);

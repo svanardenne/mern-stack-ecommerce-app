@@ -5,7 +5,11 @@ const router = express.Router();
 
 
 // imports signup controller
-const { userById } = require('../controllers/user');
+const { 
+  userById, 
+  read,
+  update
+} = require('../controllers/user');
 
 // imports from auth controller
 const { 
@@ -23,6 +27,18 @@ router.get('/secret/:userId',
       user: req.profile
     });
 });
+
+router.get('/user/:userId',
+requireSignin,
+isAuth,
+read
+);
+
+router.put('/user/:userId',
+requireSignin,
+isAuth,
+update
+);
 
 router.param('userId', userById);
 

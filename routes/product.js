@@ -12,7 +12,8 @@ const {
   update,
   list,
   listRelated,
-  listCategories
+  listCategories,
+  listBySearch
 } = require('../controllers/product');
 
 // imports from auth controller
@@ -50,6 +51,7 @@ router.put('/product/:productId/:userId',
 router.get('/products', list);
 router.get('/products/related/:productId', listRelated);
 router.get('/products/categories', listCategories);
+router.post("/products/by/search", listBySearch);
 
 // Params and middleware
 router.param('userId', userById);

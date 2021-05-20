@@ -10,6 +10,7 @@ const gateway = new braintree.BraintreeGateway({
   privateKey: process.env.BRAINTREE_PRIVATE_KEY,
 });
 
+// generates a client token for the front end
 exports.generateToken = (req, res) => {
   gateway.clientToken.generate({}, function (err, response) {
     if (err) {
@@ -20,6 +21,7 @@ exports.generateToken = (req, res) => {
   });
 };
 
+// controller for processing payment
 exports.processPayment = (req, res) => {
   let nonceFromTheClient = req.body.paymentMethodNonce;
   let amountFromTheClient = req.body.amount;

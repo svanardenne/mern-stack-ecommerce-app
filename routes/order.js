@@ -5,7 +5,13 @@ const router = express.Router();
 
 // imports signup controller
 const { userById, addOrderToUserHistory } = require("../controllers/user");
-const { create, listOrders, getStatusValues } = require("../controllers/order");
+const {
+  orderById,
+  create,
+  listOrders,
+  getStatusValues,
+  updateOrderStatus,
+} = require("../controllers/order");
 
 // imports from auth controller
 const { requireSignin, isAuth, isAdmin } = require("../controllers/auth");
@@ -35,7 +41,16 @@ router.get(
   getStatusValues
 );
 
-// Fetches user with id provided from front end in params
+router.put(
+  "/order/:orderId/status/:userId",
+  requireSignin,
+  isAuth,
+  isAdmin,
+  updateOrderStatus
+);
+
+// Params for fetching order and user Ids
 router.param("userId", userById);
+router.param("orderId", orderById);
 
 module.exports = router;

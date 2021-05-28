@@ -31,10 +31,10 @@ mongoose.connection.on("error", (err) => {
 });
 
 // middleware
+app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
 app.use(expressValidator());
 
 // routes middleware

@@ -1,1 +1,1 @@
-# mern-stack-ecommerce-app
+# MERN Stack eCommerce App REST API
